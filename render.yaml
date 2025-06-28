@@ -41,11 +41,12 @@ services:
         sync: false
       # OpenRouter AI (set in dashboard)
       - key: OPENROUTER_API_KEY
+        value: "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"
         sync: false
       - key: OPENROUTER_MODEL
-        value: anthropic/claude-3-haiku
+        value: "anthropic/claude-3.5-sonnet"
       - key: OPENROUTER_FALLBACK_MODEL
-        value: openai/gpt-3.5-turbo
+        value: "openai/gpt-3.5-turbo-0613"
       # Google Maps API (set in dashboard)
       - key: GOOGLE_MAPS_API_KEY
         sync: false
