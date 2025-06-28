@@ -100,12 +100,18 @@ services:
     buildCommand: echo "No build command needed for static site"
     staticPublishPath: .
     headers:
-      - path: /*
-        headers:
-          X-Frame-Options: DENY
-          X-Content-Type-Options: nosniff
-          Referrer-Policy: strict-origin-when-cross-origin
-          Permissions-Policy: camera=(), microphone=(), geolocation=()
+      - path: "/*"
+        name: "X-Frame-Options"
+        value: "DENY"
+      - path: "/*"
+        name: "X-Content-Type-Options"
+        value: "nosniff"
+      - path: "/*"
+        name: "Referrer-Policy"
+        value: "strict-origin-when-cross-origin"
+      - path: "/*"
+        name: "Permissions-Policy"
+        value: "camera=(), microphone=(), geolocation=()"
     routes:
       - type: rewrite
         source: /api/*
@@ -115,13 +121,13 @@ services:
         source: /*
         destination: /index.html
 
-# Build environment filters
-buildFilters:
-  paths:
-    - "quiet-craft-backend/quiet-craft-backend/**"
-    - "quiet-craft-website-redesigned/**"
-  ignoredPaths:
-    - "node_modules/**"
-    - "logs/**"
-    - "*.log"
-    - "README.md"
+    # Build filter to only trigger builds on backend changes
+    buildFilter:
+      paths:
+        - "**/*.js"
+        - "package.json"
+        - "package-lock.json"
+      ignoredPaths:
+        - "node_modules/**"
+        - "logs/**"
+        - "*.log"
