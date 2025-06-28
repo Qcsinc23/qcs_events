@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiet Craft Solutions - AI-Powered Event Logistics Excellence</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="AI-powered event logistics platform delivering precision, reliability, and seamless execution for conferences, trade shows, and corporate events.">
+    <meta name="keywords" content="event logistics, AI delivery, conference shipping, trade show logistics, corporate events, time-critical delivery">
+    <meta name="author" content="MiniMax Agent">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Quiet Craft Solutions - AI-Powered Event Logistics">
+    <meta property="og:description" content="Transform your event logistics with our AI-powered platform. Precision delivery, real-time tracking, and seamless execution.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.quietcrafting.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+    
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Design System -->
+    <link rel="stylesheet" href="css/modern-design-system.css">
+    
+    <!-- Modern Animations -->
+    <link rel="stylesheet" href="css/modern-animations.css">
+    
+    <!-- Main Styles -->
+    <style>
+        /* ==========================================
+           MODERN HERO SECTION
+           ========================================== */
+        
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--qc-space-6);
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--qc-space-2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--qc-radius-full);
+            padding: var(--qc-space-2) var(--qc-space-4);
+            font-size: var(--qc-text-sm);
+            font-weight: var(--qc-font-weight-medium);
+            backdrop-filter: blur(10px);
+            margin-bottom: var(--qc-space-6);
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: var(--qc-font-weight-extrabold);
+            line-height: 1.1;
+            margin-bottom: var(--qc-space-6);
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--qc-text-xl);
+            font-weight: var(--qc-font-weight-normal);
+            line-height: var(--qc-leading-relaxed);
+            margin-bottom: var(--qc-space-8);
+            opacity: 0.9;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: var(--qc-space-4);
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--qc-space-12);
+        }
+        
+        .hero-cta-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+            color: var(--qc-gray-900);
+            padding: var(--qc-space-4) var(--qc-space-8);
+            font-size: var(--qc-text-lg);
+            font-weight: var(--qc-font-weight-semibold);
+            border-radius: var(--qc-radius-xl);
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all var(--qc-transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: var(--qc-space-4) var(--qc-space-8);
+            font-size: var(--qc-text-lg);
+            font-weight: var(--qc-font-weight-medium);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--qc-radius-xl);
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all var(--qc-transition-normal);
+        }
+        
+        .hero-cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--qc-space-8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-number {
+            font-size: var(--qc-text-3xl);
+            font-weight: var(--qc-font-weight-bold);
+            display: block;
+            margin-bottom: var(--qc-space-1);
+        }
+        
+        .hero-stat-label {
+            font-size: var(--qc-text-sm);
+            opacity: 0.8;
+        }
+        
+        /* ==========================================
+           MODERN SERVICES SECTION
+           ========================================== */
+        
+        .services-section {
+            padding: var(--qc-space-32) 0;
+            background: var(--qc-gray-50);
+        }
+        
+        .services-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--qc-space-16);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--qc-space-8);
+            margin-bottom: var(--qc-space-16);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: var(--qc-radius-2xl);
+            padding: var(--qc-space-8);
+            box-shadow: var(--qc-shadow-sm);
+            transition: all var(--qc-transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--qc-shadow-2xl);
+        }
+        
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
+            border-radius: var(--qc-radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: var(--qc-space-6);
+        }
+        
+        .service-title {
+            font-size: var(--qc-text-xl);
+            font-weight: var(--qc-font-weight-semibold);
+            color: var(--qc-gray-900);
+            margin-bottom: var(--qc-space-3);
+        }
+        
+        .service-description {
+            color: var(--qc-gray-600);
+            line-height: var(--qc-leading-relaxed);
+            margin-bottom: var(--qc-space-4);
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--qc-space-2);
+            font-size: var(--qc-text-sm);
+            color: var(--qc-gray-700);
+            margin-bottom: var(--qc-space-2);
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            color: var(--qc-success);
+            font-weight: bold;
+        }
+        
+        /* ==========================================
+           MODERN QUOTE SECTION
+           ========================================== */
+        
+        .quote-section {
+            padding: var(--qc-space-32) 0;
+            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="dots" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+        }
+        
+        .quote-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--qc-space-16);
+            align-items: center;
+        }
+        
+        .quote-info {
+            text-align: left;
+        }
+        
+        .quote-form-container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--qc-radius-2xl);
+            padding: var(--qc-space-8);
+            backdrop-filter: blur(20px);
+        }
+        
+        .quote-form {
+            display: grid;
+            gap: var(--qc-space-4);
+        }
+        
+        .form-group {
+            display: grid;
+            gap: var(--qc-space-2);
+        }
+        
+        .form-group-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--qc-space-4);
+        }
+        
+        .quote-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--qc-gray-900);
+            padding: var(--qc-space-4);
+            border-radius: var(--qc-radius-lg);
+            font-size: var(--qc-text-base);
+            transition: all var(--qc-transition-fast);
+        }
+        
+        .quote-input:focus {
+            background: white;
+            border-color: var(--qc-primary);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        }
+        
+        .quote-input::placeholder {
+            color: var(--qc-gray-500);
+        }
+        
+        .quote-submit {
+            background: white;
+            color: var(--qc-primary);
+            padding: var(--qc-space-4) var(--qc-space-6);
+            border: none;
+            border-radius: var(--qc-radius-lg);
+            font-size: var(--qc-text-base);
+            font-weight: var(--qc-font-weight-semibold);
+            cursor: pointer;
+            transition: all var(--qc-transition-fast);
+        }
+        
+        .quote-submit:hover {
+            background: var(--qc-gray-100);
+            transform: translateY(-1px);
+        }
+        
+        /* ==========================================
+           MODERN TESTIMONIALS
+           ========================================== */
+        
+        .testimonials-section {
+            padding: var(--qc-space-32) 0;
+            background: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--qc-space-8);
+        }
+        
+        .testimonial-card {
+            background: var(--qc-gray-50);
+            border-radius: var(--qc-radius-2xl);
+            padding: var(--qc-space-8);
+            position: relative;
+            transition: all var(--qc-transition-normal);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--qc-shadow-lg);
+        }
+        
+        .testimonial-content {
+            font-size: var(--qc-text-lg);
+            line-height: var(--qc-leading-relaxed);
+            color: var(--qc-gray-700);
+            margin-bottom: var(--qc-space-6);
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--qc-space-4);
+        }
+        
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--qc-radius-full);
+            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: var(--qc-font-weight-semibold);
+        }
+        
+        .testimonial-info h4 {
+            font-size: var(--qc-text-base);
+            font-weight: var(--qc-font-weight-semibold);
+            color: var(--qc-gray-900);
+            margin-bottom: var(--qc-space-1);
+        }
+        
+        .testimonial-info p {
+            font-size: var(--qc-text-sm);
+            color: var(--qc-gray-600);
+        }
+        
+        /* ==========================================
+           MODERN FOOTER
+           ========================================== */
+        
+        .footer-section {
+            background: var(--qc-gray-900);
+            color: var(--qc-gray-300);
+            padding: var(--qc-space-20) 0 var(--qc-space-8);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--qc-space-12);
+            margin-bottom: var(--qc-space-12);
+        }
+        
+        .footer-brand {
+            color: white;
+        }
+        
+        .footer-logo {
+            font-size: var(--qc-text-2xl);
+            font-weight: var(--qc-font-weight-bold);
+            color: white;
+            margin-bottom: var(--qc-space-4);
+        }
+        
+        .footer-description {
+            line-height: var(--qc-leading-relaxed);
+            margin-bottom: var(--qc-space-6);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: var(--qc-space-4);
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--qc-gray-800);
+            color: var(--qc-gray-400);
+            border-radius: var(--qc-radius-lg);
+            text-decoration: none;
+            transition: all var(--qc-transition-fast);
+        }
+        
+        .social-link:hover {
+            background: var(--qc-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: var(--qc-text-lg);
+            font-weight: var(--qc-font-weight-semibold);
+            margin-bottom: var(--qc-space-4);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--qc-space-2);
+        }
+        
+        .footer-links a {
+            color: var(--qc-gray-400);
+            text-decoration: none;
+            transition: color var(--qc-transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--qc-gray-800);
+            padding-top: var(--qc-space-8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--qc-space-4);
+        }
+        
+        /* ==========================================
+           MODERN CHATBOT STYLES
+           ========================================== */
+        
+        .chatbot-trigger {
+            position: fixed;
+            bottom: var(--qc-space-6);
+            right: var(--qc-space-6);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
+            border-radius: var(--qc-radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--qc-shadow-xl);
+            transition: all var(--qc-transition-normal);
+            z-index: var(--qc-z-modal);
+            border: none;
+        }
+        
+        .chatbot-trigger:hover {
+            transform: scale(1.1);
+            box-shadow: var(--qc-shadow-2xl);
+        }
+        
+        /* ==========================================
+           RESPONSIVE DESIGN
+           ========================================== */
+        
+        @media (max-width: 768px) {
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .hero-cta-primary,
+            .hero-cta-secondary {
+                text-align: center;
+            }
+            
+            .quote-content {
+                grid-template-columns: 1fr;
+                gap: var(--qc-space-8);
+            }
+            
+            .form-group-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--qc-space-8);
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        /* ==========================================
+           MODERN LOADING STATES
+           ========================================== */
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: var(--qc-z-modal);
+            backdrop-filter: blur(5px);
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--qc-gray-300);
+            border-top: 3px solid var(--qc-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation -->
+    <nav class="qc-nav" id="main-nav">
+        <div class="qc-nav-container">
+            <a href="#" class="qc-nav-logo">
+                📦 Quiet Craft Solutions
+            </a>
+            
+            <ul class="qc-nav-links qc-hidden-mobile">
+                <li><a href="#home" class="qc-nav-link active">Home</a></li>
+                <li><a href="#services" class="qc-nav-link">Services</a></li>
+                <li><a href="#how-it-works" class="qc-nav-link">How It Works</a></li>
+                <li><a href="#testimonials" class="qc-nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="qc-nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="qc-flex qc-items-center qc-gap-4">
+                <a href="#quote" class="qc-btn qc-btn-primary">Get Quote</a>
+                <button class="qc-btn qc-btn-ghost qc-hidden-desktop" id="mobile-menu">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modern Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-background"></div>
+        <div class="qc-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🚀</span>
+                    <span>AI-Powered Logistics Platform</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Revolutionizing Event Logistics with Intelligence
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Experience the future of event logistics with our AI-powered platform. 
+                    Precision delivery, real-time tracking, and seamless execution for your most critical events.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#quote" class="hero-cta-primary">
+                        Get Instant Quote
+                    </a>
+                    <a href="#services" class="hero-cta-secondary">
+                        Explore Services
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">99.8%</span>
+                        <span class="hero-stat-label">On-Time Delivery</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24/7</span>
+                        <span class="hero-stat-label">AI Support</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">10k+</span>
+                        <span class="hero-stat-label">Events Delivered</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">< 2hr</span>
+                        <span class="hero-stat-label">Emergency Response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Services Section -->
+    <section class="services-section" id="services">
+        <div class="qc-container">
+            <div class="services-header">
+                <h2 class="qc-heading-2 qc-mb-4">
+                    Comprehensive Logistics Solutions
+                </h2>
+                <p class="qc-body-large qc-text-secondary">
+                    From time-critical deliveries to complex event setups, our AI-enhanced services ensure 
+                    your logistics run seamlessly from start to finish.
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚛</div>
+                    <h3 class="service-title">AI-Optimized Delivery</h3>
+                    <p class="service-description">
+                        Intelligent route optimization and real-time tracking ensure your materials arrive exactly when and where needed.
+                    </p>
+                    <ul class="service-features">
+                        <li>Real-time GPS tracking</li>
+                        <li>Dynamic route optimization</li>
+                        <li>Predictive delivery windows</li>
+                        <li>Automated notifications</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3 class="service-title">Premium Handling</h3>
+                    <p class="service-description">
+                        Specialized handling for high-value, delicate, and time-sensitive materials with full insurance coverage.
+                    </p>
+                    <ul class="service-features">
+                        <li>Climate-controlled transport</li>
+                        <li>White-glove handling</li>
+                        <li>Full insurance coverage</li>
+                        <li>Damage prevention protocols</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3 class="service-title">Venue Coordination</h3>
+                    <p class="service-description">
+                        Seamless integration with event venues including loading dock coordination and on-site logistics management.
+                    </p>
+                    <ul class="service-features">
+                        <li>Venue liaison services</li>
+                        <li>Loading dock scheduling</li>
+                        <li>On-site logistics coordination</li>
+                        <li>Setup and breakdown support</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Emergency Response</h3>
+                    <p class="service-description">
+                        24/7 emergency logistics with rapid response times for last-minute changes and critical situations.
+                    </p>
+                    <ul class="service-features">
+                        <li>< 2 hour response time</li>
+                        <li>24/7 availability</li>
+                        <li>Priority routing</li>
+                        <li>Dedicated support team</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3 class="service-title">Secure Storage</h3>
+                    <p class="service-description">
+                        Climate-controlled warehousing with advanced security systems for pre-event storage and inventory management.
+                    </p>
+                    <ul class="service-features">
+                        <li>Climate-controlled environment</li>
+                        <li>24/7 security monitoring</li>
+                        <li>Inventory management system</li>
+                        <li>Flexible storage options</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Assistant</h3>
+                    <p class="service-description">
+                        Intelligent virtual assistant for instant quotes, shipment tracking, and 24/7 customer support.
+                    </p>
+                    <ul class="service-features">
+                        <li>Instant quote generation</li>
+                        <li>Natural language interface</li>
+                        <li>Predictive analytics</li>
+                        <li>Multi-language support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Quote Section -->
+    <section class="quote-section" id="quote">
+        <div class="qc-container">
+            <div class="quote-content">
+                <div class="quote-info">
+                    <h2 class="qc-heading-2 qc-mb-6">
+                        Get Your Instant Quote
+                    </h2>
+                    <p class="qc-body-large qc-mb-8" style="opacity: 0.9;">
+                        Our AI-powered pricing engine provides accurate quotes in seconds. 
+                        Enter your logistics requirements and get a comprehensive estimate instantly.
+                    </p>
+                    
+                    <div class="qc-flex qc-flex-col qc-gap-4">
+                        <div class="qc-flex qc-items-center qc-gap-3">
+                            <span style="font-size: 20px;">⚡</span>
+                            <span>Instant AI-generated pricing</span>
+                        </div>
+                        <div class="qc-flex qc-items-center qc-gap-3">
+                            <span style="font-size: 20px;">📊</span>
+                            <span>Transparent cost breakdown</span>
+                        </div>
+                        <div class="qc-flex qc-items-center qc-gap-3">
+                            <span style="font-size: 20px;">🔒</span>
+                            <span>No hidden fees or surprises</span>
+                        </div>
+                        <div class="qc-flex qc-items-center qc-gap-3">
+                            <span style="font-size: 20px;">📞</span>
+                            <span>Expert consultation available</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quote-form-container">
+                    <form class="quote-form" id="modern-quote-form">
+                        <div class="form-group">
+                            <label class="qc-label" style="color: white;">Service Type</label>
+                            <select class="quote-input" name="serviceType" required>
+                                <option value="">Select service type</option>
+                                <option value="standard">Standard Delivery</option>
+                                <option value="express">Express Delivery</option>
+                                <option value="emergency">Emergency Service</option>
+                                <option value="setup">Full Setup Service</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label class="qc-label" style="color: white;">Pickup Location</label>
+                                <input type="text" class="quote-input" name="pickupLocation" placeholder="Enter pickup address" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="qc-label" style="color: white;">Delivery Location</label>
+                                <input type="text" class="quote-input" name="deliveryLocation" placeholder="Enter delivery address" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label class="qc-label" style="color: white;">Event Date</label>
+                                <input type="date" class="quote-input" name="eventDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="qc-label" style="color: white;">Preferred Time</label>
+                                <input type="time" class="quote-input" name="preferredTime">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="qc-label" style="color: white;">Item Description</label>
+                            <textarea class="quote-input" name="itemDescription" placeholder="Describe your items (size, weight, special requirements)" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label class="qc-label" style="color: white;">Contact Name</label>
+                                <input type="text" class="quote-input" name="contactName" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="qc-label" style="color: white;">Phone Number</label>
+                                <input type="tel" class="quote-input" name="phoneNumber" placeholder="(555) 123-4567" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="qc-label" style="color: white;">Email Address</label>
+                            <input type="email" class="quote-input" name="email" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <button type="submit" class="quote-submit">
+                            Get Instant Quote 🚀
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="qc-container">
+            <div class="services-header">
+                <h2 class="qc-heading-2 qc-mb-4">
+                    Trusted by Industry Leaders
+                </h2>
+                <p class="qc-body-large qc-text-secondary">
+                    See what our clients say about their experience with our AI-powered logistics platform.
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Quiet Craft Solutions transformed our annual conference logistics. Their AI system predicted and solved problems before we even knew they existed. Flawless execution!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SM</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Event Director, TechGlobal Conference</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The real-time tracking and proactive communication gave us complete peace of mind. When last-minute changes happened, they adapted seamlessly."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div class="testimonial-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Operations Manager, Metropolitan Trade Shows</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Their emergency response service saved our product launch. When our original logistics partner failed, Quiet Craft delivered in under 2 hours."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LS</div>
+                        <div class="testimonial-info">
+                            <h4>Lisa Chen</h4>
+                            <p>Marketing Director, Innovation Summit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="footer-section">
+        <div class="qc-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">📦 Quiet Craft Solutions</div>
+                    <p class="footer-description">
+                        Leading the future of event logistics with AI-powered intelligence, 
+                        ensuring seamless delivery for your most critical events.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">💼</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">AI-Optimized Delivery</a></li>
+                        <li><a href="#">Premium Handling</a></li>
+                        <li><a href="#">Venue Coordination</a></li>
+                        <li><a href="#">Emergency Response</a></li>
+                        <li><a href="#">Secure Storage</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Track Shipment</a></li>
+                        <li><a href="#">Emergency Support</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Quiet Craft Solutions Inc. All rights reserved.</p>
+                <div>
+                    <a href="#" style="color: var(--qc-gray-400); margin-right: var(--qc-space-4);">Privacy Policy</a>
+                    <a href="#" style="color: var(--qc-gray-400); margin-right: var(--qc-space-4);">Terms of Service</a>
+                    <a href="#" style="color: var(--qc-gray-400);">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modern Chatbot Trigger -->
+    <button class="chatbot-trigger" id="chatbot-trigger">
+        💬
+    </button>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Backend Integration -->
+    <script src="js/backend-integration.js"></script>
+    
+    <!-- Modern JavaScript -->
+    <script src="js/modern-interactions.js"></script>
+    
+    <!-- Enhanced AI Chatbot -->
+    <script src="chatbot/operations-agent.js"></script>
+    <script src="chatbot/auto-engagement-system.js"></script>
+    <script src="chatbot/chatbot-widget.js"></script>
+
+<style>
+#minimax-floating-ball {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 12px;
+  background: #222222;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  color: #F8F8F8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#minimax-floating-ball:hover {
+  transform: translateY(-2px);
+  background: #383838;
+}
+
+.minimax-ball-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minimax-logo-wave {
+  width: 26px;
+  height: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='22' viewBox='0 0 26 22' fill='none'%3E%3Cg clip-path='url(%23clip0_3442_102412)'%3E%3Cpath d='M12.8405 14.6775C12.8405 14.9897 13.0932 15.2424 13.4055 15.2424C13.7178 15.2424 13.9705 14.9897 13.9705 14.6775V2.98254C13.9705 1.88957 13.0809 1 11.9879 1C10.895 1 10.0054 1.88957 10.0054 2.98254V11.566V17.1068C10.0054 17.5773 9.62327 17.9594 9.1528 17.9594C8.68233 17.9594 8.30021 17.5773 8.30021 17.1068V8.04469C8.30021 6.95172 7.41063 6.06215 6.31767 6.06215C5.22471 6.06215 4.33513 6.95172 4.33513 8.04469V11.8855C4.33513 12.3559 3.953 12.7381 3.48254 12.7381C3.01207 12.7381 2.62994 12.3559 2.62994 11.8855V10.4936C2.62994 10.1813 2.37725 9.92861 2.06497 9.92861C1.7527 9.92861 1.5 10.1813 1.5 10.4936V11.8855C1.5 12.9784 2.38957 13.868 3.48254 13.868C4.5755 13.868 5.46508 12.9784 5.46508 11.8855V8.04469C5.46508 7.57422 5.8472 7.19209 6.31767 7.19209C6.78814 7.19209 7.17026 7.57422 7.17026 8.04469V17.1068C7.17026 18.1998 8.05984 19.0894 9.1528 19.0894C10.2458 19.0894 11.1353 18.1998 11.1353 17.1068V2.98254C11.1353 2.51207 11.5175 2.12994 11.9879 2.12994C12.4584 2.12994 12.8405 2.51207 12.8405 2.98254V14.6775Z' fill='%23F8F8F8'/%3E%3Cpath d='M23.3278 6.06215C22.2348 6.06215 21.3452 6.95172 21.3452 8.04469V15.6143C21.3452 16.0847 20.9631 16.4669 20.4926 16.4669C20.0222 16.4669 19.6401 16.0847 19.6401 15.6143V2.98254C19.6401 1.88957 18.7505 1 17.6575 1C16.5645 1 15.675 1.88957 15.675 2.98254V19.0175C15.675 19.4879 15.2928 19.8701 14.8224 19.8701C14.3519 19.8701 13.9698 19.4879 13.9698 19.0175V17.0329C13.9698 16.7206 13.7171 16.4679 13.4048 16.4679C13.0925 16.4679 12.8398 16.7206 12.8398 17.0329V19.0175C12.8398 20.1104 13.7294 21 14.8224 21C15.9153 21 16.8049 20.1104 16.8049 19.0175V2.98254C16.8049 2.51207 17.187 2.12994 17.6575 2.12994C18.128 2.12994 18.5101 2.51207 18.5101 2.98254V15.6143C18.5101 16.7072 19.3997 17.5968 20.4926 17.5968C21.5856 17.5968 22.4752 16.7072 22.4752 15.6143V8.04469C22.4752 7.57422 22.8573 7.19209 23.3278 7.19209C23.7982 7.19209 24.1804 7.57422 24.1804 8.04469V14.6775C24.1804 14.9897 24.4331 15.2424 24.7453 15.2424C25.0576 15.2424 25.3103 14.9897 25.3103 14.6775V8.04469C25.3103 6.95172 24.4207 6.06215 23.3278 6.06215Z' fill='%23F8F8F8'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_3442_102412'%3E%3Crect width='25' height='22' fill='white' transform='translate(0.5)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.minimax-ball-text {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.minimax-close-icon {
+  margin-left: 8px;
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.minimax-close-icon:hover {
+  opacity: 1;
+}
+</style>
+<div id="minimax-floating-ball">
+  <div class="minimax-ball-content">
+    <div class="minimax-logo-wave"></div>
+    <span class="minimax-ball-text">Created by MiniMax Agent</span>
+  </div>
+  <div class="minimax-close-icon">×</div>
+</div>
+<script>
+// Initialize floating ball functionality
+function initFloatingBall() {
+  const ball = document.getElementById('minimax-floating-ball');
+  if (!ball) return;
+
+  // Initial animation
+  ball.style.opacity = '0';
+  ball.style.transform = 'translateY(20px)';
+
+  setTimeout(() => {
+    ball.style.opacity = '1';
+    ball.style.transform = 'translateY(0)';
+  }, 500);
+
+  // Handle logo click
+  const ballContent = ball.querySelector('.minimax-ball-content');
+  ballContent.addEventListener('click', function (e) {
+    e.stopPropagation();
+    window.open('https://agent.minimax.io/agent', '_blank');
+    ball.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      ball.style.transform = 'scale(1)';
+    }, 100);
+  });
+
+  // Handle close button click
+  const closeIcon = ball.querySelector('.minimax-close-icon');
+  closeIcon.addEventListener('click', function (e) {
+    e.stopPropagation();
+    ball.style.opacity = '0';
+    ball.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+      ball.style.display = 'none';
+    }, 300);
+  });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initFloatingBall); 
+</script>
+
+</body>
+</html>

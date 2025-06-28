@@ -1,0 +1,147 @@
+# Render.com Deployment Configuration
+# This file defines the infrastructure for Quiet Craft Solutions backend
+
+databases:
+  - name: quiet-craft-db
+    plan: starter  # Free tier, upgrade to standard/pro for production
+    databaseName: quiet_craft_production
+    user: quiet_craft_user
+    region: oregon
+
+services:
+  - type: web
+    name: quiet-craft-backend
+    runtime: node
+    env: node
+    plan: starter  # Free tier, upgrade to standard/pro for production
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    
+    # Auto-deploy from main branch
+    autoDeploy: true
+    
+    # Environment variables (set actual values in Render dashboard)
+    envVars:
+      - key: NODE_ENV
+        value: production
+      
+      - key: PORT
+        value: 10000
+      
+      - key: DATABASE_URL
+        fromDatabase:
+          name: quiet-craft-db
+          property: connectionString
+      
+      - key: FRONTEND_URL
+        value: https://rtzv3gryvb.space.minimax.io
+      
+      # Clerk Authentication (set in dashboard)
+      - key: CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: CLERK_JWT_KEY
+        sync: false
+      
+      # OpenRouter AI (set in dashboard)
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_MODEL
+        value: anthropic/claude-3-haiku
+      - key: OPENROUTER_FALLBACK_MODEL
+        value: openai/gpt-3.5-turbo
+      
+      # Google Maps API (set in dashboard)
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false
+      
+      # Pricing Configuration
+      - key: BASE_DELIVERY_FEE
+        value: "75.00"
+      - key: DISTANCE_TIER_1_MAX
+        value: "20"
+      - key: DISTANCE_TIER_2_MAX
+        value: "50"
+      - key: DISTANCE_TIER_1_RATE
+        value: "0.00"
+      - key: DISTANCE_TIER_2_RATE
+        value: "1.50"
+      - key: DISTANCE_TIER_3_RATE
+        value: "2.00"
+      
+      # Item Fees
+      - key: SMALL_ITEM_FEE
+        value: "10.00"
+      - key: MEDIUM_ITEM_FEE
+        value: "25.00"
+      - key: LARGE_ITEM_FEE
+        value: "50.00"
+      
+      # Service Fees
+      - key: SAME_DAY_FEE
+        value: "50.00"
+      - key: NEXT_DAY_FEE
+        value: "25.00"
+      - key: STANDARD_FEE
+        value: "0.00"
+      - key: EMERGENCY_BASE_FEE
+        value: "150.00"
+      - key: EMERGENCY_MULTIPLIER
+        value: "2.0"
+      
+      # System Configuration
+      - key: SUPER_ADMIN_IDS
+        sync: false
+      - key: TAX_RATE
+        value: "0.085"
+      - key: ENABLE_ANALYTICS
+        value: "true"
+      - key: ENABLE_CACHING
+        value: "true"
+      - key: LOG_LEVEL
+        value: info
+
+  - type: web
+    name: quiet-craft-frontend
+    runtime: static
+    buildCommand: echo "Frontend already built"
+    staticPublishPath: ../quiet-craft-website-enhanced
+    
+    # Custom headers for static files
+    headers:
+      - path: /*
+        headers:
+          X-Frame-Options: DENY
+          X-Content-Type-Options: nosniff
+          Referrer-Policy: strict-origin-when-cross-origin
+          Permissions-Policy: camera=(), microphone=(), geolocation=()
+      
+      - path: /api/*
+        headers:
+          Access-Control-Allow-Origin: "*"
+          Access-Control-Allow-Methods: "GET,POST,PUT,DELETE,OPTIONS"
+          Access-Control-Allow-Headers: "Content-Type,Authorization,X-Requested-With"
+
+    # Routes for SPA (if needed)
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://quiet-craft-backend.onrender.com/api/:path*
+      
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+# Build environment
+buildFilters:
+  paths:
+    - package.json
+    - package-lock.json
+    - "*.js"
+    - "**/*.js"
+  ignoredPaths:
+    - node_modules/**/*
+    - logs/**/*
+    - "*.log"
