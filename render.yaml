@@ -3,7 +3,7 @@
 
 databases:
   - name: quiet-craft-db
-    plan: free
+    plan: standard
     databaseName: quiet_craft_production
     user: quiet_craft_user
     region: oregon
@@ -13,7 +13,7 @@ services:
     name: quiet-craft-backend
     runtime: node
     env: node
-    plan: free
+    plan: standard
     # The root directory for the backend service, relative to the repo root
     rootDir: quiet-craft-backend/quiet-craft-backend
     buildCommand: npm install
