@@ -3,7 +3,7 @@
 
 databases:
   - name: quiet-craft-db
-    plan: standard
+    plan: "Standard"
     databaseName: quiet_craft_production
     user: quiet_craft_user
     region: oregon
