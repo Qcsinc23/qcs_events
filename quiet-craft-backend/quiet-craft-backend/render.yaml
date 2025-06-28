@@ -107,7 +107,7 @@ services:
     name: quiet-craft-frontend
     runtime: static
     buildCommand: echo "Frontend already built"
-    staticPublishPath: ../quiet-craft-website-enhanced
+    staticPublishPath: ../quiet-craft-website-redesigned
     
     # Custom headers for static files
     headers:
