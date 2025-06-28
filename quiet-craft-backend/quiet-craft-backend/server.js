@@ -103,15 +103,6 @@ app.use('/api/admin', adminRoutes); // Temporarily removed requireAuth() for deb
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/webhooks', webhookRoutes);
 
-// Serve static files in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../quiet-craft-website-enhanced')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../quiet-craft-website-enhanced/index.html'));
-  });
-}
-
 // 404 handler
 app.use('*', (req, res) => {
   res.status(404).json({
