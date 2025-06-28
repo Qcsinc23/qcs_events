@@ -97,11 +97,11 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
-app.use('/api/chat', chatLimiter, chatRoutes);
-app.use('/api/quote', quoteRoutes);
-app.use('/api/admin', adminRoutes); // Temporarily removed requireAuth() for debugging
-app.use('/api/analytics', analyticsRoutes);
-app.use('/api/webhooks', webhookRoutes);
+// app.use('/api/chat', chatLimiter, chatRoutes);
+// app.use('/api/quote', quoteRoutes);
+// app.use('/api/admin', adminRoutes); // Temporarily removed requireAuth() for debugging
+// app.use('/api/analytics', analyticsRoutes);
+// app.use('/api/webhooks', webhookRoutes);
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
