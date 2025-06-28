@@ -296,17 +296,25 @@ Guidelines:
       stream: false
     };
 
-    const response = await axios.post(this.apiUrl, requestData, {
-      headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': this.appUrl,
-        'X-Title': this.appName
-      },
-      timeout: this.capabilities.timeout
-    });
-
-    return response.data;
+    try {
+      const response = await axios.post(this.apiUrl, requestData, {
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': this.appUrl,
+          'X-Title': this.appName
+        },
+        timeout: this.capabilities.timeout
+      });
+      return response.data;
+    } catch (error) {
+      logger.logError(error, {
+        message: 'Error calling OpenRouter API',
+        context: enrichedContext,
+        service: 'AIService.callOpenRouter'
+      });
+      throw new Error(this.sanitizeError(error));
+    }
   }
 
   async enhanceResponse(response, enrichedContext) {

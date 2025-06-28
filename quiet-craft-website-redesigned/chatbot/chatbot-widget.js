@@ -833,9 +833,9 @@ class AILChatbot {
             
             if (operationsResponse.isOperational) {
                 // Handle with Operations Agent
-                const response = await this.handleOperationsMessage(message, operationsResponse);
+                await this.handleOperationsMessage(message);
                 this.hideTyping();
-                this.addMessage(response, 'bot');
+                // The `addMessage` call is now handled within `handleOperationsMessage`
                 this.updateOperationsUI(operationsResponse);
             } else {
                 // Handle with regular AI
@@ -878,42 +878,6 @@ class AILChatbot {
         };
     }
 
-    async handleOperationsMessage(message, context) {
-        if (!this.operationsAgent) {
-            return "Operations system is not available. Please contact our team directly at (973) 415-9532.";
-        }
-
-        try {
-            // Enable operations mode
-            this.operationsMode = true;
-            
-            // Handle confirmation responses
-            if (this.operationsAgent.conversationState === 'confirming') {
-                if (message.toLowerCase().includes('yes') || message.toLowerCase().includes('confirm')) {
-                    return await this.operationsAgent.finalizeEventCreation();
-                } else if (message.toLowerCase().includes('no') || message.toLowerCase().includes('cancel')) {
-                    this.operationsAgent.currentEventDraft = null;
-                    this.operationsAgent.conversationState = 'idle';
-                    this.operationsMode = false;
-                    return "No problem! Feel free to start over whenever you're ready to book a service.";
-                }
-            }
-            
-            // Process the message through Operations Agent
-            const response = await this.operationsAgent.processOperationsMessage(message, context);
-            
-            // Update conversation state
-            if (this.operationsAgent.conversationState === 'idle') {
-                this.operationsMode = false;
-            }
-            
-            return response;
-            
-        } catch (error) {
-            console.error('Operations Agent error:', error);
-            return "I encountered an issue processing your request. Let me connect you with our operations team. Please call (973) 415-9532 for immediate assistance.";
-        }
-    }
 
     updateOperationsUI(context) {
         // Show operations-specific quick actions
@@ -1364,16 +1328,6 @@ Guidelines:
         if (conversations.length > 0) {
             const totalTime = conversations.reduce((sum, conv) => sum + (conv.responseTime || 0), 0);
             this.analytics.avgResponseTime = Math.round(totalTime / conversations.length * 10) / 10;
-        }
-    }
-
-    initializeOperationsAgent() {
-        // Load and initialize the Operations Agent
-        if (typeof OperationsAgent !== 'undefined') {
-            this.operationsAgent = new OperationsAgent();
-            console.log('🤖 Operations Agent initialized successfully');
-        } else {
-            console.warn('⚠️ Operations Agent not available');
         }
     }
 
