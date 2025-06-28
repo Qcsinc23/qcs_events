@@ -14,6 +14,7 @@ services:
     runtime: node
     env: node
     plan: starter  # Free tier, upgrade to standard/pro for production
+    rootDir: quiet-craft-backend/quiet-craft-backend
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /health
@@ -106,8 +107,9 @@ services:
   - type: web
     name: quiet-craft-frontend
     runtime: static
-    buildCommand: echo "Frontend already built"
-    staticPublishPath: ../quiet-craft-website-redesigned
+    rootDir: quiet-craft-website-redesigned
+    buildCommand: echo "No build command needed for static site"
+    staticPublishPath: .
     
     # Custom headers for static files
     headers:
