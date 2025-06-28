@@ -16,7 +16,7 @@ require('dotenv').config();
 // Import middleware and routes
 const { clerkMiddleware, requireAuth } = require('@clerk/express');
 const logger = require('./utils/logger');
-const errorHandler = require('./middleware/errorHandler');
+const { errorHandler } = require('./middleware/errorHandler');
 const { securityMiddleware } = require('./middleware/security');
 
 // Import route modules
