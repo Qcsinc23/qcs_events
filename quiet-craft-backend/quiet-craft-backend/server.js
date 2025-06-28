@@ -17,7 +17,7 @@ require('dotenv').config();
 const { clerkMiddleware, requireAuth } = require('@clerk/express');
 const logger = require('./utils/logger');
 const errorHandler = require('./middleware/errorHandler');
-const securityMiddleware = require('./middleware/security');
+const { securityMiddleware } = require('./middleware/security');
 
 // Import route modules
 const chatRoutes = require('./routes/chat');
@@ -97,11 +97,11 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
-// app.use('/api/chat', chatLimiter, chatRoutes);
-// app.use('/api/quote', quoteRoutes);
-// app.use('/api/admin', adminRoutes); // Temporarily removed requireAuth() for debugging
-// app.use('/api/analytics', analyticsRoutes);
-// app.use('/api/webhooks', webhookRoutes);
+app.use('/api/chat', chatLimiter, chatRoutes);
+app.use('/api/quote', quoteRoutes);
+app.use('/api/admin', adminRoutes); // Temporarily removed requireAuth() for debugging
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/webhooks', webhookRoutes);
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
