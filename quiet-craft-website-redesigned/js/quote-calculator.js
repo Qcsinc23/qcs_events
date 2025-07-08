@@ -89,3 +89,8 @@ class QuoteCalculator {
         return quote;
     }
 }
+
+// Export for global use
+if (typeof window !== 'undefined') {
+    window.QuoteCalculator = QuoteCalculator;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Calculator Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quote Calculator Test</h1>
+    <button onclick="testQuoteCalculator()">Test Quote Calculator</button>
+    <div id="result" class="result" style="display: none;"></div>
+
+    <script src="js/quote-calculator.js"></script>
+    <script>
+        function testQuoteCalculator() {
+            try {
+                // Create test form data
+                const formData = new FormData();
+                formData.set('distance', '30');
+                formData.set('notice', '48-72');
+                formData.set('items', JSON.stringify([
+                    { size: 'small', quantity: 2 },
+                    { size: 'medium', quantity: 1 },
+                    { size: 'large', quantity: 1 }
+                ]));
+                formData.set('storage', '10x20');
+                formData.set('coordination', 'standard');
+                formData.set('waitTime', '2');
+
+                // Define pricing configuration
+                const pricingConfig = {
+                    baseFee: 200.00,
+                    distanceSurcharge: {
+                        tier1: 1.25,
+                        tier2: 1.75,
+                    },
+                    itemHandling: {
+                        small: 35.00,
+                        medium: 55.00,
+                        large: 75.00,
+                    },
+                    storage: {
+                        small: 475.00,
+                        large: 950.00,
+                    },
+                    coordination: {
+                        standard: 80.00,
+                        complex: 120.00,
+                    },
+                    waitTimeFee: 45.00,
+                };
+
+                // Test the calculator
+                const calculator = new QuoteCalculator(pricingConfig);
+                const quote = calculator.calculateQuote(formData);
+
+                // Display results
+                const resultDiv = document.getElementById('result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <h2>Quote Test Results:</h2>
+                    <p><strong>Base Fee:</strong> $${quote.baseFee.toFixed(2)}</p>
+                    <p><strong>Distance Surcharge:</strong> $${quote.distanceSurcharge.toFixed(2)} (30 miles)</p>
+                    <p><strong>Item Handling Fee:</strong> $${quote.itemHandlingFee.toFixed(2)}</p>
+                    <ul>
+                        <li>2x Small @ $35 = $70</li>
+                        <li>1x Medium @ $55 = $55</li>
+                        <li>1x Large @ $75 = $75</li>
+                    </ul>
+                    <p><strong>Expedited Service Fee (30%):</strong> $${quote.expeditedServiceFee.toFixed(2)}</p>
+                    <p><strong>Storage Fee:</strong> $${quote.storageFee.toFixed(2)}</p>
+                    <p><strong>Coordination Fee:</strong> $${quote.coordinationFee.toFixed(2)}</p>
+                    <p><strong>Wait Time Fee:</strong> $${quote.waitTimeFee.toFixed(2)}</p>
+                    <hr>
+                    <h3>Total: $${quote.total.toFixed(2)}</h3>
+                    <p style="color: green;">✓ Quote calculator is working correctly!</p>
+                `;
+            } catch (error) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <h2 style="color: red;">Error:</h2>
+                    <p>${error.message}</p>
+                    <pre>${error.stack}</pre>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

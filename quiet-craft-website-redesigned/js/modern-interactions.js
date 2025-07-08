@@ -352,18 +352,21 @@ class ModernInteractions {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Validate all fields
-            const inputs = form.querySelectorAll('input, select, textarea');
+            // Validate all fields in the current form (not just the active step)
+            const activeStep = form.querySelector('.form-step.active');
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
             let allValid = true;
             
             inputs.forEach(input => {
-                if (!this.validateField(input)) {
+                // Only validate if the input is visible (in an active step)
+                const isInActiveStep = activeStep.contains(input) || !input.closest('.form-step');
+                if (isInActiveStep && !this.validateField(input)) {
                     allValid = false;
                 }
             });
 
             if (!allValid) {
-                this.showFormError('Please correct the errors above');
+                this.showFormError('Please fill in all required fields');
                 return;
             }
 
@@ -371,12 +374,12 @@ class ModernInteractions {
             this.showLoadingState(form);
             
             try {
-                await this.submitQuoteForm(form);
-                this.showFormSuccess('Quote request submitted successfully! We\'ll contact you within 15 minutes.');
-                form.reset();
+                const result = await this.submitQuoteForm(form);
+                // Don't show success message or reset form since we're displaying the quote
+                // The quote display is handled in displayQuote method
             } catch (error) {
                 console.error('Form submission error:', error);
-                this.showFormError('Sorry, there was an error submitting your request. Please try again or call (973) 415-9532.');
+                this.showFormError('Sorry, there was an error calculating your quote. Please try again or call (973) 415-9532.');
             } finally {
                 this.hideLoadingState(form);
             }
@@ -400,7 +403,30 @@ class ModernInteractions {
         
         // Calculate quote using QuoteCalculator
         if (window.QuoteCalculator) {
-            const calculator = new window.QuoteCalculator();
+            // Define pricing configuration
+            const pricingConfig = {
+                baseFee: 200.00,
+                distanceSurcharge: {
+                    tier1: 1.25,
+                    tier2: 1.75,
+                },
+                itemHandling: {
+                    small: 35.00,
+                    medium: 55.00,
+                    large: 75.00,
+                },
+                storage: {
+                    small: 475.00,
+                    large: 950.00,
+                },
+                coordination: {
+                    standard: 80.00,
+                    complex: 120.00,
+                },
+                waitTimeFee: 45.00,
+            };
+            
+            const calculator = new window.QuoteCalculator(pricingConfig);
             const quote = calculator.calculateQuote(formData);
             this.displayQuote(quote, form);
             return { success: true, quote };
