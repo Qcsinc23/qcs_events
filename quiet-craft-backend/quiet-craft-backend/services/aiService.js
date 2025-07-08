@@ -299,7 +299,7 @@ Guidelines:
     try {
       const response = await axios.post(this.apiUrl, requestData, {
         headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
+          'Authorization': `Bearer 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`,
           'Content-Type': 'application/json',
           'HTTP-Referer': this.appUrl,
           'X-Title': this.appName
