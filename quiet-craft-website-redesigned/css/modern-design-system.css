@@ -483,7 +483,7 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--qc-gray-200);
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -538,6 +538,17 @@ body {
   height: 2px;
   background: var(--qc-primary);
   border-radius: var(--qc-radius-full);
+}
+
+.scroll-indicator {
+    height: 4px;
+    background: var(--qc-primary);
+    width: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--qc-z-toast);
+    transition: width 0.1s;
 }
 
 /* ==========================================

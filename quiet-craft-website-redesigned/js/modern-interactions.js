@@ -224,28 +224,16 @@ class ModernInteractions {
     }
 
     setupProgressIndicators() {
-        // Create reading progress indicator
-        const progressBar = document.createElement('div');
-        progressBar.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
-            z-index: 9999;
-            transition: width 0.1s ease;
-        `;
-        document.body.appendChild(progressBar);
+        const scrollIndicator = document.querySelector('.scroll-indicator');
 
-        const updateProgress = () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            progressBar.style.width = `${scrollPercent}%`;
-        };
-
-        window.addEventListener('scroll', this.throttle(updateProgress, 16));
+        if (scrollIndicator) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                scrollIndicator.style.width = `${scrollPercent}%`;
+            });
+        }
     }
 
     /* ==========================================
@@ -473,6 +461,50 @@ class ModernInteractions {
             const today = new Date().toISOString().split('T')[0];
             dateInput.setAttribute('min', today);
         }
+
+        // Multi-step form logic
+        const nextButtons = form.querySelectorAll('.next-btn');
+        const prevButtons = form.querySelectorAll('.prev-btn');
+        const formSteps = form.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.progress-bar-step');
+        let currentStep = 0;
+
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (this.validateStep(currentStep)) {
+                    currentStep++;
+                    this.updateFormStep(formSteps, progressSteps, currentStep);
+                }
+            });
+        });
+
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentStep--;
+                this.updateFormStep(formSteps, progressSteps, currentStep);
+            });
+        });
+    }
+
+    validateStep(step) {
+        const currentFormStep = document.querySelectorAll('.form-step')[step];
+        const inputs = currentFormStep.querySelectorAll('input, select, textarea');
+        let allValid = true;
+        inputs.forEach(input => {
+            if (!this.validateField(input)) {
+                allValid = false;
+            }
+        });
+        return allValid;
+    }
+
+    updateFormStep(formSteps, progressSteps, currentStep) {
+        formSteps.forEach((step, index) => {
+            step.classList.toggle('active', index === currentStep);
+        });
+        progressSteps.forEach((step, index) => {
+            step.classList.toggle('active', index <= currentStep);
+        });
     }
 
     /* ==========================================

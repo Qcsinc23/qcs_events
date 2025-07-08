@@ -753,7 +753,15 @@ class AILChatbot {
     }
 
     loadWelcomeMessage() {
-        const welcomeMessage = `Hello! I'm the ${this.config.companyName} AI assistant. I can help you with event logistics questions, quotes, and information about our services. How can I assist you today?`;
+        const path = window.location.pathname;
+        let welcomeMessage = `Hello! I'm the ${this.config.companyName} AI assistant. I can help you with event logistics questions, quotes, and information about our services. How can I assist you today?`;
+
+        if (path.includes('services')) {
+            welcomeMessage = `Hello! I see you're interested in our services. I can help you with any questions you have about our event logistics solutions. What can I help you with?`;
+        } else if (path.includes('quote')) {
+            welcomeMessage = `Hello! It looks like you're interested in a quote. I can help you with that. What kind of services are you looking for?`;
+        }
+
         this.addMessage(welcomeMessage, 'bot');
     }
 
