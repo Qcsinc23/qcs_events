@@ -385,7 +385,14 @@ class ModernInteractions {
 
     async submitQuoteForm(form) {
         const formData = new FormData(form);
-        const quoteData = Object.fromEntries(formData.entries());
+        const quoteData = {};
+        const formSteps = form.querySelectorAll('.form-step');
+        formSteps.forEach(step => {
+            const inputs = step.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                quoteData[input.name] = input.value;
+            });
+        });
         
         // Add metadata
         quoteData.timestamp = new Date().toISOString();
