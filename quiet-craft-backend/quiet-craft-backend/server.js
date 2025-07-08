@@ -20,7 +20,6 @@ const { errorHandler } = require('./middleware/errorHandler');
 const { securityMiddleware } = require('./middleware/security');
 
 // Import route modules
-const chatRoutes = require('./routes/chat');
 const quoteRoutes = require('./routes/quote');
 const adminRoutes = require('./routes/admin');
 const analyticsRoutes = require('./routes/analytics');
@@ -42,12 +41,6 @@ const limiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Chat-specific rate limiting
-const chatLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20, // 20 chat messages per minute
-  message: 'Too many chat requests, please slow down.',
-});
 
 // Core middleware
 app.use(helmet({
@@ -97,7 +90,6 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
-app.use('/api/chat', chatLimiter, chatRoutes);
 app.use('/api/quote', quoteRoutes);
 app.use('/api/admin', adminRoutes); // Temporarily removed requireAuth() for debugging
 app.use('/api/analytics', analyticsRoutes);
