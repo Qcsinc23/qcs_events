@@ -469,9 +469,20 @@ class ModernInteractions {
                     <strong style="color: #4ade80;">$${quote.total.toFixed(2)}</strong>
                 </div>
             </div>
-            <p style="margin-top: var(--qc-space-4); font-size: var(--qc-text-sm); opacity: 0.8;">
-                This quote is valid for 30 days. Contact us to book your service.
-            </p>
+            <div style="margin-top: var(--qc-space-6); padding: var(--qc-space-4); background: rgba(255, 255, 255, 0.1); border-radius: var(--qc-radius-lg); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <h5 style="color: white; margin-bottom: var(--qc-space-2); font-size: var(--qc-text-base);">Important Information & Standard Terms</h5>
+                <div style="font-size: var(--qc-text-sm); opacity: 0.9; line-height: 1.6;">
+                    <p style="margin-bottom: var(--qc-space-2);">• This quote is valid for 30 days from the date of generation.</p>
+                    <p style="margin-bottom: var(--qc-space-2);">• Final pricing may vary based on actual weight, dimensions, and service requirements verified at pickup.</p>
+                    <p style="margin-bottom: var(--qc-space-2);">• Additional charges may apply for: residential delivery/pickup, inside delivery, liftgate service, or delivery appointment scheduling.</p>
+                    <p style="margin-bottom: var(--qc-space-2);">• Fuel surcharges are subject to change based on current market rates.</p>
+                    <p style="margin-bottom: var(--qc-space-2);">• Insurance coverage is included up to $100 per shipment. Additional coverage available upon request.</p>
+                    <p style="margin-bottom: var(--qc-space-2);">• Delivery times are estimates and not guaranteed unless expedited service is selected.</p>
+                    <p style="margin-bottom: var(--qc-space-2);">• Customer is responsible for proper packaging. Repackaging services available for additional fee.</p>
+                    <p style="margin-bottom: var(--qc-space-3);">• Hazardous materials, perishables, and high-value items require special handling and prior approval.</p>
+                    <p style="color: #4ade80; font-weight: 500;">✓ Our team will contact you within 15 minutes to confirm your requirements and finalize booking.</p>
+                </div>
+            </div>
         `;
         
         quoteResult.style.display = 'block';
@@ -528,9 +539,9 @@ class ModernInteractions {
                 newItemRow.style.cssText = 'display: flex; gap: var(--qc-space-2); margin-bottom: var(--qc-space-2);';
                 newItemRow.innerHTML = `
                     <select name="item-size" class="quote-input" style="flex: 1;">
-                        <option value="small">Small (up to 50 lbs)</option>
-                        <option value="medium">Medium (50-150 lbs)</option>
-                        <option value="large">Large (150+ lbs)</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
                     </select>
                     <input type="number" name="item-quantity" class="quote-input" min="1" value="1" style="width: 100px;" placeholder="Qty">
                     <button type="button" class="quote-submit" style="background: var(--qc-error); font-size: var(--qc-text-sm); padding: var(--qc-space-2);" onclick="this.parentElement.remove()">×</button>
