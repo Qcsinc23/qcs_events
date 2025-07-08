@@ -30,56 +30,64 @@ class QuoteWidget {
         this.widget.innerHTML = `
             <div class="quote-widget-header">
                 <h2>Get an Instant Quote</h2>
+                <p>Please fill out the form below to get a detailed quote.</p>
                 <button class="close-btn">&times;</button>
             </div>
             <div class="quote-widget-body">
                 <form id="quote-form">
-                    <!-- Step 1: Service Details -->
                     <div class="form-step active">
-                        <h3>Service Details</h3>
-                        <label>Distance (miles)</label>
-                        <input type="number" name="distance" min="0" value="0">
-                        <label>Expedited Service</label>
-                        <select name="notice">
-                            <option value="">None</option>
-                            <option value="48-72">48-72 Hours Notice</option>
-                            <option value="less-than-48">Less than 48 Hours Notice</option>
-                        </select>
+                        <div class="form-group">
+                            <label>Distance (miles)</label>
+                            <input type="number" name="distance" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Expedited Service</label>
+                            <select name="notice">
+                                <option value="">None</option>
+                                <option value="48-72">48-72 Hours Notice</option>
+                                <option value="less-than-48">Less than 48 Hours Notice</option>
+                            </select>
+                        </div>
                         <button type="button" class="next-btn">Next</button>
                     </div>
-                    <!-- Step 2: Item Details -->
                     <div class="form-step">
-                        <h3>Item Details</h3>
-                        <div id="items-container">
-                            <div class="item-row">
-                                <select name="item-size">
-                                    <option value="small">Small</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="large">Large</option>
-                                </select>
-                                <input type="number" name="item-quantity" min="1" value="1">
+                        <div class="form-group">
+                            <label>Item Details</label>
+                            <div id="items-container">
+                                <div class="item-row">
+                                    <select name="item-size">
+                                        <option value="small">Small</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="large">Large</option>
+                                    </select>
+                                    <input type="number" name="item-quantity" min="1" value="1">
+                                </div>
                             </div>
+                            <button type="button" id="add-item-btn">Add Item</button>
                         </div>
-                        <button type="button" id="add-item-btn">Add Item</button>
                         <button type="button" class="prev-btn">Previous</button>
                         <button type="button" class="next-btn">Next</button>
                     </div>
-                    <!-- Step 3: Additional Services -->
                     <div class="form-step">
-                        <h3>Additional Services</h3>
-                        <label>Storage</label>
-                        <select name="storage">
-                            <option value="">None</option>
-                            <option value="10x20">Up to 10x20</option>
-                            <option value="20x30">Up to 20x30</option>
-                        </select>
-                        <label>Coordination</label>
-                        <select name="coordination">
-                            <option value="standard">Standard</option>
-                            <option value="complex">Complex</option>
-                        </select>
-                        <label>Wait Time (hours)</label>
-                        <input type="number" name="waitTime" min="0" value="0">
+                        <div class="form-group">
+                            <label>Storage</label>
+                            <select name="storage">
+                                <option value="">None</option>
+                                <option value="10x20">Up to 10x20</option>
+                                <option value="20x30">Up to 20x30</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Coordination</label>
+                            <select name="coordination">
+                                <option value="standard">Standard</option>
+                                <option value="complex">Complex</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Wait Time (hours)</label>
+                            <input type="number" name="waitTime" min="0" value="0">
+                        </div>
                         <button type="button" class="prev-btn">Previous</button>
                         <button type="submit">Get Quote</button>
                     </div>

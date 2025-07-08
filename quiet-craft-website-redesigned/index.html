@@ -324,12 +324,43 @@
             text-align: left;
         }
         
-        .quote-form-container {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--qc-radius-2xl);
-            padding: var(--qc-space-8);
-            backdrop-filter: blur(20px);
+        .quote-widget {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            z-index: 10002;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quote-widget-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .quote-widget-header h2 {
+            margin: 0;
+        }
+
+        .quote-widget-body {
+            padding: 20px;
+        }
+
+        .quote-widget .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .quote-widget .form-step {
+            display: none;
+        }
+
+        .quote-widget .form-step.active {
+            display: block;
         }
         
         .quote-form {
