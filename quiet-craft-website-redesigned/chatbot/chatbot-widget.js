@@ -275,7 +275,7 @@ class AILChatbot {
                 height: 600px;
                 max-width: calc(100vw - 40px);
                 max-height: calc(100vh - 120px);
-                background: white;
+                background: #f8fafc;
                 border-radius: 16px;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
                 display: none;
@@ -304,12 +304,13 @@ class AILChatbot {
             }
 
             .ai-chatbot-header {
-                background: linear-gradient(135deg, ${this.options.primaryColor}, #1e40af);
-                color: white;
+                background: white;
+                color: #0f172a;
                 padding: 16px 20px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                border-bottom: 1px solid #e5e7eb;
             }
 
             .ai-chatbot-header-info {
@@ -413,9 +414,9 @@ class AILChatbot {
             }
 
             .ai-chatbot-message.user .ai-chatbot-message-content {
-                background: ${this.options.primaryColor};
+                background: #2563eb;
                 color: white;
-                border-color: ${this.options.primaryColor};
+                border-color: #2563eb;
             }
 
             .ai-chatbot-typing {

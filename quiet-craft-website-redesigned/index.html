@@ -368,6 +368,29 @@
         .form-step.active {
             display: block;
         }
+
+        .form-step .quote-submit {
+            margin-top: var(--qc-space-4);
+        }
+
+        .form-step .prev-btn {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+        
+        .form-step .prev-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-step .next-btn, .form-step .prev-btn {
+            width: 48%;
+            display: inline-block;
+        }
+
+        .form-step .next-btn + .prev-btn, .form-step .prev-btn + .next-btn {
+            margin-left: 4%;
+        }
         
         .form-group {
             display: grid;
