@@ -1368,7 +1368,7 @@
                     </h2>
                     <p class="qc-body-large qc-mb-8" style="opacity: 0.9;">
                         Our AI-powered pricing engine provides accurate quotes in seconds. 
-                        Enter your logistics requirements and get a comprehensive estimate instantly.
+                        Click the button below to launch our interactive quote widget.
                     </p>
                     
                     <div class="qc-flex qc-flex-col qc-gap-4">
@@ -1392,72 +1392,7 @@
                 </div>
                 
                 <div class="quote-form-container">
-                    <div class="progress-bar">
-                        <div class="progress-bar-step active">1</div>
-                        <div class="progress-bar-step">2</div>
-                        <div class="progress-bar-step">3</div>
-                    </div>
-                    <form class="quote-form" id="modern-quote-form">
-                        <fieldset class="form-step active">
-                            <div class="form-group">
-                                <label class="qc-label" style="color: white;">Service Type</label>
-                                <select class="quote-input" name="serviceType" required>
-                                    <option value="">Select service type</option>
-                                    <option value="standard">Standard Delivery</option>
-                                    <option value="express">Express Delivery</option>
-                                    <option value="emergency">Emergency Service</option>
-                                    <option value="setup">Full Setup Service</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="qc-label" style="color: white;">Item Description</label>
-                                <textarea class="quote-input" name="itemDescription" placeholder="Describe your items (size, weight, special requirements)" rows="3"></textarea>
-                            </div>
-                            <button type="button" class="quote-submit next-btn">Next</button>
-                        </fieldset>
-                        <fieldset class="form-step">
-                            <div class="form-group-row">
-                                <div class="form-group">
-                                    <label class="qc-label" style="color: white;">Pickup Location</label>
-                                    <input type="text" class="quote-input" name="pickupLocation" placeholder="Enter pickup address" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="qc-label" style="color: white;">Delivery Location</label>
-                                    <input type="text" class="quote-input" name="deliveryLocation" placeholder="Enter delivery address" required>
-                                </div>
-                            </div>
-                            <div class="form-group-row">
-                                <div class="form-group">
-                                    <label class="qc-label" style="color: white;">Event Date</label>
-                                    <input type="date" class="quote-input" name="eventDate" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="qc-label" style="color: white;">Preferred Time</label>
-                                    <input type="time" class="quote-input" name="preferredTime">
-                                </div>
-                            </div>
-                            <button type="button" class="quote-submit prev-btn">Previous</button>
-                            <button type="button" class="quote-submit next-btn">Next</button>
-                        </fieldset>
-                        <fieldset class="form-step">
-                            <div class="form-group-row">
-                                <div class="form-group">
-                                    <label class="qc-label" style="color: white;">Contact Name</label>
-                                    <input type="text" class="quote-input" name="contactName" placeholder="Your full name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="qc-label" style="color: white;">Phone Number</label>
-                                    <input type="tel" class="quote-input" name="phoneNumber" placeholder="(555) 123-4567" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="qc-label" style="color: white;">Email Address</label>
-                                <input type="email" class="quote-input" name="email" placeholder="your@email.com" required>
-                            </div>
-                            <button type="button" class="quote-submit prev-btn">Previous</button>
-                            <button type="submit" class="quote-submit">Get Instant Quote 🚀</button>
-                        </fieldset>
-                    </form>
+                    <button id="launch-quote-widget" class="quote-submit">Launch Quote Widget</button>
                 </div>
             </div>
         </div>
@@ -1643,6 +1578,8 @@
     
     <!-- Modern JavaScript -->
     <script src="js/modern-interactions.js"></script>
+    <script src="js/quote-calculator.js"></script>
+    <script src="js/quote-widget.js"></script>
     
     <!-- Enhanced AI Chatbot -->
     <script src="chatbot/operations-agent.js"></script>

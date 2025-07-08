@@ -448,6 +448,15 @@ class ModernInteractions {
     }
 
     setupFormInteractions(form) {
+        const launchButton = document.getElementById('launch-quote-widget');
+        if (launchButton) {
+            launchButton.addEventListener('click', () => {
+                new QuoteWidget();
+            });
+        }
+
+        if (!form) return;
+
         // Auto-format phone numbers
         const phoneInput = form.querySelector('input[type="tel"]');
         if (phoneInput) {
