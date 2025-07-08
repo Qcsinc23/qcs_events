@@ -822,35 +822,6 @@
         }
         
         /* ==========================================
-           MODERN CHATBOT STYLES
-           ========================================== */
-        
-        .chatbot-trigger {
-            position: fixed;
-            bottom: var(--qc-space-6);
-            right: var(--qc-space-6);
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--qc-primary) 0%, var(--qc-secondary) 100%);
-            border-radius: var(--qc-radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: var(--qc-shadow-xl);
-            transition: all var(--qc-transition-normal);
-            z-index: var(--qc-z-modal);
-            border: none;
-        }
-        
-        .chatbot-trigger:hover {
-            transform: scale(1.1);
-            box-shadow: var(--qc-shadow-2xl);
-        }
-        
-        /* ==========================================
            RESPONSIVE DESIGN
            ========================================== */
         
@@ -1434,11 +1405,6 @@
 
     <a href="#home" class="back-to-top">↑</a>
 
-    <!-- Modern Chatbot Trigger -->
-    <button class="chatbot-trigger" id="chatbot-trigger">
-        💬
-    </button>
-
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loading-overlay" style="display: none;">
         <div class="loading-spinner"></div>
@@ -1451,49 +1417,5 @@
     <script src="js/modern-interactions.js"></script>
     <script src="js/quote-calculator.js"></script>
     <script src="js/quote-widget.js"></script>
-    
-    <!-- Enhanced AI Chatbot - Load dependencies first -->
-    <script>
-        // Ensure all chatbot dependencies load in correct order
-        (function() {
-            const scripts = [
-                'chatbot/operations-agent.js',
-                'chatbot/notification-service.js',
-                'chatbot/auto-engagement-system.js',
-                'chatbot/chatbot-widget.js'
-            ];
-            
-            let loadIndex = 0;
-            
-            function loadNextScript() {
-                if (loadIndex >= scripts.length) {
-                    console.log('✅ All chatbot scripts loaded successfully');
-                    return;
-                }
-                
-                const script = document.createElement('script');
-                script.src = scripts[loadIndex];
-                script.onload = function() {
-                    console.log(`✅ Loaded: ${scripts[loadIndex]}`);
-                    loadIndex++;
-                    loadNextScript();
-                };
-                script.onerror = function() {
-                    console.error(`❌ Failed to load: ${scripts[loadIndex]}`);
-                    // Continue loading other scripts even if one fails
-                    loadIndex++;
-                    loadNextScript();
-                };
-                document.body.appendChild(script);
-            }
-            
-            // Start loading after DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', loadNextScript);
-            } else {
-                loadNextScript();
-            }
-        })();
-    </script>
 </body>
 </html>

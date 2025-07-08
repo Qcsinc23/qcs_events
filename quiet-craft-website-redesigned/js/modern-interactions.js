@@ -1124,26 +1124,6 @@ class ModernInteractions {
     }
 
     /* ==========================================
-       CHATBOT INTEGRATION
-       ========================================== */
-
-    setupChatbotIntegration() {
-        const chatbotTrigger = document.getElementById('chatbot-trigger');
-        if (!chatbotTrigger) return;
-
-        chatbotTrigger.addEventListener('click', () => {
-            // Initialize chatbot if not already loaded
-            if (window.ChatbotWidget) {
-                const chatbot = new window.ChatbotWidget();
-                chatbot.open();
-            } else {
-                console.log('Chatbot not loaded yet');
-                this.showNotification('Chatbot is loading...', 'info');
-            }
-        });
-    }
-
-    /* ==========================================
        CLEANUP
        ========================================== */
 
