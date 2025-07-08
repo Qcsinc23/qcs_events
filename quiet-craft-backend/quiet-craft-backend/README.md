@@ -311,7 +311,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For support and questions:
 - **Documentation**: This README and inline code comments
 - **Issues**: GitHub Issues for bug reports and feature requests
-- **Email**: admin@quietcrafting.com
+- **Email**: admin@quietcraftsolutions.com
 
 ## 🎯 Roadmap
 

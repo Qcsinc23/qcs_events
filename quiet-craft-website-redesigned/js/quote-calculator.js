@@ -4,6 +4,18 @@ class QuoteCalculator {
     }
 
     calculateQuote(formData) {
+        // Validate pricing object exists
+        if (!this.pricing) {
+            throw new Error('Pricing configuration not available. Please try again later.');
+        }
+
+        // Validate required pricing properties
+        const requiredFields = ['baseFee', 'distanceSurcharge', 'itemHandling', 'storage', 'coordination', 'waitTimeFee'];
+        for (const field of requiredFields) {
+            if (this.pricing[field] === undefined && field !== 'taxRate') {
+                throw new Error(`Missing pricing configuration for ${field}`);
+            }
+        }
         const quote = {
             baseFee: 0,
             distanceSurcharge: 0,
@@ -25,10 +37,15 @@ class QuoteCalculator {
         };
 
         // 1. Base Fee
-        quote.baseFee = this.pricing.baseFee;
+        quote.baseFee = this.pricing.baseFee || 0;
 
         // 2. Distance Surcharge
-        const distance = parseFloat(formData.get('distance'));
+        const distance = parseFloat(formData.get('distance')) || 0;
+        
+        // Validate distance
+        if (distance < 0) {
+            throw new Error('Distance cannot be negative');
+        }
         if (distance > 50) {
             quote.distanceSurcharge = (distance - 50) * this.pricing.distanceSurcharge.tier2 + (30 * this.pricing.distanceSurcharge.tier1);
         } else if (distance > 20) {
@@ -37,7 +54,16 @@ class QuoteCalculator {
         quote.details.distance = distance;
 
         // 3. Item Handling Fee
-        const items = JSON.parse(formData.get('items'));
+        let items = [];
+        try {
+            items = JSON.parse(formData.get('items') || '[]');
+        } catch (e) {
+            throw new Error('Invalid items data format');
+        }
+        
+        if (!Array.isArray(items)) {
+            throw new Error('Items must be an array');
+        }
         items.forEach(item => {
             const fee = this.pricing.itemHandling[item.size] || 0;
             quote.itemHandlingFee += fee * item.quantity;
@@ -47,10 +73,10 @@ class QuoteCalculator {
         // 4. Expedited Service Fee
         const notice = formData.get('notice');
         if (notice === '48-72') {
-            quote.expeditedServiceFee = (quote.baseFee + quote.distanceSurcharge + quote.itemHandlingFee) * 0.30;
+            quote.expeditedServiceFee = (quote.baseFee + quote.distanceSurcharge + quote.itemHandlingFee) * 0.10;
             quote.details.expeditedNotice = '48-72 hours';
         } else if (notice === 'less-than-48') {
-            quote.expeditedServiceFee = (quote.baseFee + quote.distanceSurcharge + quote.itemHandlingFee) * 0.40;
+            quote.expeditedServiceFee = (quote.baseFee + quote.distanceSurcharge + quote.itemHandlingFee) * 0.20;
             quote.details.expeditedNotice = 'Less than 48 hours';
         }
 
@@ -75,7 +101,12 @@ class QuoteCalculator {
         }
 
         // 7. Wait Time Fee
-        const waitTime = parseFloat(formData.get('waitTime'));
+        const waitTime = parseFloat(formData.get('waitTime')) || 0;
+        
+        // Validate wait time
+        if (waitTime < 0) {
+            throw new Error('Wait time cannot be negative');
+        }
         if (waitTime > 0.5) {
             quote.waitTimeFee = (waitTime - 0.5) * this.pricing.waitTimeFee;
         }
@@ -83,8 +114,12 @@ class QuoteCalculator {
         // Calculate Subtotal
         quote.subtotal = quote.baseFee + quote.distanceSurcharge + quote.itemHandlingFee + quote.expeditedServiceFee + quote.storageFee + quote.coordinationFee + quote.waitTimeFee;
 
+        // Calculate Tax (using default 8.5% if not specified in pricing object)
+        const taxRate = this.pricing.taxRate || 0.085;
+        quote.tax = quote.subtotal * taxRate;
+
         // Calculate Total
-        quote.total = quote.subtotal;
+        quote.total = quote.subtotal + quote.tax;
 
         return quote;
     }

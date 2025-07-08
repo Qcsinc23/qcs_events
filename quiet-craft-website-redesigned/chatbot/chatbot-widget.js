@@ -108,13 +108,20 @@ class AILChatbot {
         try {
             // Load the Operations Agent script if not already loaded
             if (typeof OperationsAgent === 'undefined') {
+                console.warn('Operations Agent not loaded, attempting dynamic load...');
                 await this.loadOperationsAgentScript();
             }
             
-            this.operationsAgent = new OperationsAgent();
-            console.log('Operations Agent initialized successfully');
+            if (typeof OperationsAgent !== 'undefined') {
+                this.operationsAgent = new OperationsAgent();
+                console.log('✅ Operations Agent initialized successfully');
+            } else {
+                console.warn('⚠️ Operations Agent unavailable - running in basic mode');
+            }
         } catch (error) {
-            console.error('Failed to initialize Operations Agent:', error);
+            console.error('❌ Failed to initialize Operations Agent:', error);
+            // Continue without operations agent
+            this.operationsAgent = null;
         }
     }
 

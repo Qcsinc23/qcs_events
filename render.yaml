@@ -80,6 +80,11 @@ services:
         value: "150.00"
       - key: EMERGENCY_MULTIPLIER
         value: "2.0"
+      # Coordination Fees
+      - key: COORDINATION_STANDARD_FEE
+        value: "80.00"
+      - key: COORDINATION_COMPLEX_FEE
+        value: "120.00"
       # System Configuration
       - key: SUPER_ADMIN_IDS
         sync: false
