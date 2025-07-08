@@ -322,7 +322,7 @@ class AILChatbot {
             .ai-chatbot-avatar {
                 width: 36px;
                 height: 36px;
-                background: rgba(255, 255, 255, 0.15);
+                background: linear-gradient(135deg, ${this.options.primaryColor}, #1e40af);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -957,7 +957,7 @@ class AILChatbot {
 
     async getAIResponse(message) {
         if (!this.config.apiKey) {
-            return 'I need to be configured with an API key to provide responses. Please contact our team directly at (973) 415-9532 for immediate assistance.';
+            return 'Thank you for your message! Our AI assistant is currently being configured. In the meantime, please use the quote form on this page or contact our team directly at (973) 415-9532 for immediate assistance. We\'ll be happy to help with all your event logistics needs!';
         }
 
         // Track response time

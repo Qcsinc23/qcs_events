@@ -385,28 +385,96 @@ class ModernInteractions {
 
     async submitQuoteForm(form) {
         const formData = new FormData(form);
-        const quoteData = {};
-        const formSteps = form.querySelectorAll('.form-step');
-        formSteps.forEach(step => {
-            const inputs = step.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => {
-                quoteData[input.name] = input.value;
-            });
+        
+        // Collect all items
+        const items = [];
+        const itemRows = form.querySelectorAll('.item-row');
+        itemRows.forEach(row => {
+            const size = row.querySelector('[name="item-size"]').value;
+            const quantity = parseInt(row.querySelector('[name="item-quantity"]').value) || 1;
+            items.push({ size, quantity });
         });
         
-        // Add metadata
-        quoteData.timestamp = new Date().toISOString();
-        quoteData.userAgent = navigator.userAgent;
-        quoteData.referrer = document.referrer;
+        // Set items in FormData
+        formData.set('items', JSON.stringify(items));
         
-        // Use backend API if available
+        // Calculate quote using QuoteCalculator
+        if (window.QuoteCalculator) {
+            const calculator = new window.QuoteCalculator();
+            const quote = calculator.calculateQuote(formData);
+            this.displayQuote(quote, form);
+            return { success: true, quote };
+        }
+        
+        // Fallback to backend API if available
         if (window.backendAPI) {
-            const response = await window.backendAPI.generateQuote(quoteData);
+            const response = await window.backendAPI.generateQuote(formData);
             return response;
         } else {
             // Fallback to local processing
-            return this.processQuoteLocally(quoteData);
+            return this.processQuoteLocally(formData);
         }
+    }
+
+    displayQuote(quote, form) {
+        // Hide all form steps
+        const formSteps = form.querySelectorAll('.form-step');
+        formSteps.forEach(step => step.classList.remove('active'));
+        
+        // Show quote result
+        const quoteResult = document.getElementById('quote-result');
+        const quoteDetails = document.getElementById('quote-details');
+        
+        quoteDetails.innerHTML = `
+            <h4 style="color: white; margin-bottom: var(--qc-space-4);">Quote Breakdown</h4>
+            <div style="display: grid; gap: var(--qc-space-2);">
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Base Fee:</span>
+                    <strong>$${quote.baseFee.toFixed(2)}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Distance Surcharge:</span>
+                    <strong>$${quote.distanceSurcharge.toFixed(2)}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Item Handling Fee:</span>
+                    <strong>$${quote.itemHandlingFee.toFixed(2)}</strong>
+                </div>
+                ${quote.expeditedServiceFee > 0 ? `
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Expedited Service Fee:</span>
+                    <strong>$${quote.expeditedServiceFee.toFixed(2)}</strong>
+                </div>` : ''}
+                ${quote.storageFee > 0 ? `
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Storage Fee:</span>
+                    <strong>$${quote.storageFee.toFixed(2)}</strong>
+                </div>` : ''}
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Coordination Fee:</span>
+                    <strong>$${quote.coordinationFee.toFixed(2)}</strong>
+                </div>
+                ${quote.waitTimeFee > 0 ? `
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Wait Time Fee:</span>
+                    <strong>$${quote.waitTimeFee.toFixed(2)}</strong>
+                </div>` : ''}
+                <hr style="border-color: rgba(255, 255, 255, 0.2); margin: var(--qc-space-2) 0;">
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Subtotal:</span>
+                    <strong>$${quote.subtotal.toFixed(2)}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: var(--qc-text-xl); margin-top: var(--qc-space-2);">
+                    <span>Total:</span>
+                    <strong style="color: #4ade80;">$${quote.total.toFixed(2)}</strong>
+                </div>
+            </div>
+            <p style="margin-top: var(--qc-space-4); font-size: var(--qc-text-sm); opacity: 0.8;">
+                This quote is valid for 30 days. Contact us to book your service.
+            </p>
+        `;
+        
+        quoteResult.style.display = 'block';
     }
 
     processQuoteLocally(quoteData) {
@@ -448,14 +516,28 @@ class ModernInteractions {
     }
 
     setupFormInteractions(form) {
-        const launchButton = document.getElementById('launch-quote-widget');
-        if (launchButton) {
-            launchButton.addEventListener('click', () => {
-                new QuoteWidget();
+        if (!form) return;
+
+        // Add item button functionality
+        const addItemBtn = document.getElementById('add-item-btn');
+        if (addItemBtn) {
+            addItemBtn.addEventListener('click', () => {
+                const itemsContainer = document.getElementById('items-container');
+                const newItemRow = document.createElement('div');
+                newItemRow.className = 'item-row';
+                newItemRow.style.cssText = 'display: flex; gap: var(--qc-space-2); margin-bottom: var(--qc-space-2);';
+                newItemRow.innerHTML = `
+                    <select name="item-size" class="quote-input" style="flex: 1;">
+                        <option value="small">Small (up to 50 lbs)</option>
+                        <option value="medium">Medium (50-150 lbs)</option>
+                        <option value="large">Large (150+ lbs)</option>
+                    </select>
+                    <input type="number" name="item-quantity" class="quote-input" min="1" value="1" style="width: 100px;" placeholder="Qty">
+                    <button type="button" class="quote-submit" style="background: var(--qc-error); font-size: var(--qc-text-sm); padding: var(--qc-space-2);" onclick="this.parentElement.remove()">×</button>
+                `;
+                itemsContainer.appendChild(newItemRow);
             });
         }
-
-        if (!form) return;
 
         // Auto-format phone numbers
         const phoneInput = form.querySelector('input[type="tel"]');
@@ -504,7 +586,7 @@ class ModernInteractions {
 
     validateStep(step) {
         const currentFormStep = document.querySelectorAll('.form-step')[step];
-        const inputs = currentFormStep.querySelectorAll('input, select, textarea');
+        const inputs = currentFormStep.querySelectorAll('input[required], select[required], textarea[required]');
         let allValid = true;
         inputs.forEach(input => {
             if (!this.validateField(input)) {
